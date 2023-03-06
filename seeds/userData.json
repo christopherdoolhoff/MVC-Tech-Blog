@@ -1,23 +1,22 @@
 [
-    {
-      "username_email": "sal@hotmail.com",
-      "password": "password12345"
-    },
-    {
-      "username_email": "lernantino@gmail.com",
-      "password": "password12345"
-    },
-    {
-      "username_email": "amiko2k20@aol.com",
-      "password": "password12345"
-    },
-    {
-      "username_email": "jordan99@msn.com",
-      "password": "password12345"
-    },
-    {
-      "username_email": "the_blake@yahoo.com",
-      "password": "password12345"
-    }
-  ]
-  
+  {
+    "username_email": "sal@hotmail.com",
+    "password": "password12345"
+  },
+  {
+    "username_email": "lernantino@gmail.com",
+    "password": "password12345"
+  },
+  {
+    "username_email": "amiko2k20@aol.com",
+    "password": "password12345"
+  },
+  {
+    "username_email": "jordan99@msn.com",
+    "password": "password12345"
+  },
+  {
+    "username_email": "the_blake@yahoo.com",
+    "password": "password12345"
+  }
+]
