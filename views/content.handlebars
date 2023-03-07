@@ -1,0 +1,9 @@
+<section class="container">
+    <h1 class="user-name">{{username}}</h1>
+    <h2 class="post-title">{{name}}</h2>
+    <section class="flex-row justify-center">
+        {{#each post.content as |content|}}
+        {{> content-details}}
+        {{/each}}
+    </section>
+</section>

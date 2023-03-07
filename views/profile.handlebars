@@ -1,0 +1,86 @@
+{{!-- <script id="template" type="text/x-handlebars-template">
+  <body> 
+    <h1>Test</h1>
+    <ul class="dropdown menu" data-dropdown-menu>
+        {{#each categories}}
+        <li>
+          <a href="#">{{name}}</a>
+          <ul class="menu">
+            {{#each subcategories}}
+            <li><a href="#">{{name}}</a></li>
+            {{/each}}
+          </ul>
+        </li>
+        {{/each}}
+        <li><a href="#" class="nav">Profile</a></li>
+        <li><a href="#" class="nav">Logout</a></li>
+    </ul> 
+  </body>
+</script> --}}
+<head>
+  <link rel="stylesheet" type="text/css" href="../public/css/profile.css">
+</head>
+
+<body> 
+   {{!-- <ul class="dropdown menu" data-dropdown-menu>
+         <li>
+          <a href="#">Categories</a>
+          <ul class="menu">
+            <li><a href="#">Coffee Shops</a></li>
+            <li><a href="#">Parks</a></li>
+            <li><a href="#">Restaurants</a></li>
+          </ul>
+        </li> 
+        <li><a href="#" class="nav">Profile</a></li>
+        <li><a href="#" class="nav">Logout</a></li>
+      </ul> --}}
+<form id="postForm">
+        <div class="row">
+            <div class="medium-6 medium-push-3 columns">
+                <label>New Post Name:</label>
+                <textarea id="postName" class="newPost" placeholder="Your New Post Here"></textarea>
+                <br>
+                <label>New Post Description:</label>
+                <textarea id="postDescription" class="newPost" placeholder="Your New Post Here"></textarea>
+                <br>
+                <label>New Post Website:</label>
+                <textarea id="postWebsite" class="newPost" placeholder="Your New Post Here"></textarea>
+                <div class="row">
+            <div class="medium-6 medium-push-3 columns">
+                <button type="submit" class="button" id="button">New Recommendations</button>
+            </div>
+        </div>
+            </div>
+        </div>
+    </form>
+    <div class="bg-image"></div>
+{{#if submissions.length}}
+  <div id="posts">
+    <h3>Current Posts:</h3>
+
+    {{#each submissions as |submission|}}
+    <div class="row">
+      <div class="col-md-8">
+        <h6>{{submission.name}}</h6>
+        <br>
+        <p>{{submission.description}}</p>
+        <br>
+        <a href="{{submission.website}}" target="_blank">{{submission.website}}</a>
+        <hr class="solid">
+      </div>
+      {{!-- <div class="col-md-4">
+        <button class="deleteBtn" data-id="{{submission.id}}">DELETE</button>
+      </div> --}}
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+
+    <script src="/js/profile.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+</body>
