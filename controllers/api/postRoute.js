@@ -1,101 +1,34 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
-const withAuth = require('../../utils/auth');
-const { Posts } = require('../../models');
 
-// new post route
-router.post("/", withAuth, async (req, res) => {
-    try {
-      const newPost = await Posts.create({
-        ...req.body,
-        user_id: req.session.user.id,
-      });
-      res.json(newPost);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+//array to store the posts
+let posts = [];
 
-//   get all posts
-  router.get('/feed', async (req, res) => {
-    try {
-      const postData = await Posts.findAll({
-        attributes: ['title', 'content'] ,
-      });
-  
-      const posts = postData.map((post) => post.get({ plain: true }));
-  
-      res.render('feed', {
-        posts,
-        logged_in: req.session.logged_in,
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.post("/api/posts", (req, res) => {
+// Get the post content from the request body
+const content = req.body.content;
 
-// get single post
-  router.get('/:id', async (req, res) => {
-    try {
-      const postData = await Posts.findByPk(req.params.id, {
-        include: [
-          {
-            model: User,
-            attributes: ['name'],
-          },
-        ],
-      });
+if (!content) {
+    return res.status(400).json({ error: "Post content is required" });
+  }
   
-      const post = postData.get({ plain: true });
+  const newPost = { id: Date.now(), content };
+  posts.push(newPost);
   
-      res.render('post', {
-        ...post,
-        logged_in: req.session.logged_in
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-  // update post route
-  router.put("/:id", withAuth, async (req, res) => {
-    try {
-      const updatePost = await Posts.update(req.body, {
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      });
-      if (!updatePost) {
-        res.status(404).json({ message: 'No post found with this id!' });
-        return;
-      }
-  
-      res.status(200).json(updatePost);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-//   Delete post route
-  router.delete('/:id', withAuth, async (req, res) => {
-    try {
-      const deleteData = await Posts.destroy({
-        where: {
-          id: req.params.id,
-          user_id: req.session.user_id,
-        },
-      });
-  
-      if (!deleteData) {
-        res.status(404).json({ message: 'No post found with this id!' });
-        return;
-      }
-  
-      res.status(200).json(deleteData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-  
-  module.exports = router;
+  // Send a success response to the client
+  res.json({ message: "Post created successfully", post: newPost });
+});
+
+//route for the feed page
+router.get('/feed', (req, res) => {
+res.render('feed', { title: 'Title of Place', description: 'Description of Place', link: 'Link to Category Place', posts });
+});
+
+app.use(express.json());
+app.use(router);
+app.listen(3000, () => {
+console.log('Server is running on port 3000');
+});
+
+module.exports = router;

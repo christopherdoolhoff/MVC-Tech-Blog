@@ -24,7 +24,7 @@ window.onclick = function(event) {
 // }
 const feed = async () => {
     // event.preventDefault();
-        const feedData = await fetch ('/api/users/submissions');
+        const feedData = await fetch ('/api/users/posts');
         const feedInfo = await feedData.json();
         console.log(feedInfo);
         feedResults(feedInfo);
@@ -42,12 +42,10 @@ var feedResults = function (data) {
     document.querySelector(".feed").style.display = "block";
     for (var i = 0; i < data.length; i++) {
       var repoInfo =
-        "Name: " +
-        data[i].name +
-        "<br>Description: " +
-        data[i].description +
-        "<br>website: " +
-        `<a href="${data[i].website}" target="_blank">${data[i].website}</a>`+
+        "Title: " +
+        data[i].title +
+        "<br>Content: " +
+        data[i].content +
         "<br><br><br><br>";
       var repoEl = document.createElement("div");
       repoEl.classList = "feed-results";

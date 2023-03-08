@@ -1,14 +1,13 @@
 const newPostHandler = async (event) => {
     event.preventDefault();
-    const name = document.querySelector('#postName').value.trim();
-    const description = document.querySelector('#postDescription').value.trim();
-    const website = document.querySelector('#postWebsite').value.trim();
-    if (name && description && website) {
+    const title = document.querySelector('#postName').value.trim();
+    const content = document.querySelector('#postDescription').value.trim();
+    if (title && content) {
         const user = await fetch (`/api/users/user/${document.cookie}`)
         const userInfo = await user.json();
-      const response = await fetch(`/api/users/submissions/user/${userInfo.id}`, {
+      const response = await fetch(`/api/users/posts/user/${userInfo.id}`, {
         method: 'POST',
-        body: JSON.stringify({ name, description, website }),
+        body: JSON.stringify({ title, content }),
         headers: {
           'Content-Type': 'application/json',
         },
