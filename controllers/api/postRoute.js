@@ -15,6 +15,47 @@ router.post("/", withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+//   get all posts
+  router.get('/feed', async (req, res) => {
+    try {
+      const postData = await Posts.findAll({
+        attributes: ['title', 'content'] ,
+      });
+  
+      const posts = postData.map((post) => post.get({ plain: true }));
+  
+      res.render('feed', {
+        posts,
+        logged_in: req.session.logged_in,
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+// get single post
+  router.get('/:id', async (req, res) => {
+    try {
+      const postData = await Posts.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            attributes: ['name'],
+          },
+        ],
+      });
+  
+      const post = postData.get({ plain: true });
+  
+      res.render('post', {
+        ...post,
+        logged_in: req.session.logged_in
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
   
   // update post route
   router.put("/:id", withAuth, async (req, res) => {
