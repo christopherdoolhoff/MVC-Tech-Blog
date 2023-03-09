@@ -2,18 +2,18 @@
 
 ## Description
 
-This applicatioin is designed to allow the user to write and save notes. This application uses Express.js and saves and retrieves data from a JSON file. 
+This applicatioin is a tech blog designed to allow developers to post about tech.  
 
 ## Access to Application
 
-[Please click this link to get to the live application. ]( https://salty-brushlands-25601.herokuapp.com/)
+[Please click this link to get to the live application. ]( https://thawing-reef-45202.herokuapp.com/)
 
 ## Usage
 
-A user can write and same notes so that they can keep track of tasks. 
+A user can post about tech. 
 
 The following is a screenshot of the web application.
-![Screenshot of application](./assets/Screenshot%202023-01-23%20160736.png)
+![Screenshot of application](./public/assests/Screenshot%202023-03-08%20225901.png)
 
 ## License
 
