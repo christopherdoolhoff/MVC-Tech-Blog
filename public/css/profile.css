@@ -6,11 +6,7 @@ body {
     width: 60rem;
     padding: 25px;
     margin-bottom: 1rem;
-    background-image: url('/images/galaxy.jpg'); /*
-    Background image by [Photographer's Name] on Pexels
-    Source: https://www.pexels.com/photo/photo-url
-  */
-  
+    background-image: url('/images/galaxy.jpg'); 
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 2rem;
@@ -31,10 +27,6 @@ body {
     color: #fff;
     padding: 15px;
     border-radius: 0.4rem;
-    /* position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
   }
   
   .deleteBtn {

@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Tech Blog</title>
+  <title>The Blog Spot</title>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
-
 <body class="flex-column min-100-vh">
-  <nav class="navbar">
-    <ul>
-      <li class="li-inline nav-item"><a href="/">Home</a></li>
-      <li class="li-inline nav-item"><a href="/profile">Profile</a></li>
-      <li class="li-inline nav-item"><a href="/login">Login</a></li>
-      <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
-    </ul>
-  </nav>
-  <header class="hero">
-    <h1 class="app-title"><a href="/">The Tech Blog</a></h1>
+    <nav class="navbar">
+        <ul class="menu align-right">
+            <li class="li-inline nav-item"><a href="/">Home</a></li>
+            {{#if logged_in}}
+            <li class="li-inline nav-item"><a href="/profile">Profile</a></li>
+            <li class="li-inline nav-item"><button class="no-button" id="logout">Logout</button></li>
+            {{else}}
+            <li class="li-inline nav-item"><a href="/login">Login</a></li>
+            {{/if}}
+        </ul>
+    </nav>
+    <header class="hero">
+    <h1 class="app-title"><a href="/">The Blog Spot</a></h1>
   </header>
+    <div>
+        {{{ body }}}
+    </div>
+    {{#if logged_in}}
+    <script src="/js/signout.js"></script>
+    {{/if}}
 
-  <main class="col-auto">
-    {{{body}}}
-  </main>
-
-  <footer class="flex-row justify-center">
-    &copy; The Tech Blog Folks
-  </footer>
 </body>
-
+<script type="text/javascript" src="/js/vendor/jquery.js"></script>
+    <script src="/js/vendor/what-input.js"></script>
+    <script src="/js/vendor/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </html>
-<script src="/js/logout.js"></script>
